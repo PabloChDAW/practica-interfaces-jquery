@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de elementos con jQuery</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Formulario</h1>
+  <div class="setColor">
+    <p>Selecciona un color:</p>
+    <input type="color" id="colorPicker" value="#000000">
+  </div>
+
+  <div class="mainButtons">
+    <button class="changeColor">Cambiar color de fondo</button>
+    <button class="addElement">Añadir más elementos</button>
+  </div>
+  <h1>Elementos</h1>
+  <main class="cards">
+    <article>
+      <img src="../img/Anochetus_ghilianii.jpg">
+      <button class="changeImage">Cambiar</button>
+      <button class="eraseArticle">Borrar</button>
+    </article>
+
+    <article>
+      <img src="../img/Aphaenogaster_iberica.jpg">
+      <button class="changeImage">Cambiar</button>
+      <button class="eraseArticle">Borrar</button>
+    </article>
+    
+    <article>
+      <img src="../img/Camponotus_cruentatus.jpg">
+      <button class="changeImage">Cambiar</button>
+      <button class="eraseArticle">Borrar</button>
+    </article>
+
+    <article>
+      <img src="../img/Cardiocondyla_batesii.jpg">
+      <button class="changeImage">Cambiar</button>
+      <button class="eraseArticle">Borrar</button>
+    </article>
+
+    <article>
+      <img src="../img/Cataglyphis_rosenhaueri.jpg">
+      <button class="changeImage">Cambiar</button>
+      <button class="eraseArticle">Borrar</button>
+    </article>
+  </main>
+  
+  <script src="script.js"></script>
+</body>
+</html>
+

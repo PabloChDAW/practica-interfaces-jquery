@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de elementos con jQuery</title>
+  <link rel="stylesheet" href="styles.css">
+  <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+</head>
+<body>
+  <h1>Formulario</h1>
+  <div class="setColor">
+    <p>Selecciona un color:</p>
+    <input type="color" id="colorPicker" value="#000000">
+  </div>
+
+  <div class="mainButtons">
+    <button class="changeColor">Cambiar color de fondo</button>
+    <button class="addElement">Añadir más elementos</button>
+  </div>
+  <h1>Elementos</h1>
+  <main class="cards">
+    <article>
+      <img src="../img/Anochetus_ghilianii.jpg">
+      <button class="changeImage">Cambiar</button>
+      <button class="eraseArticle">Borrar</button>
+    </article>
+
+    <article>
+      <img src="../img/Aphaenogaster_iberica.jpg">
+      <button class="changeImage">Cambiar</button>
+      <button class="eraseArticle">Borrar</button>
+    </article>
+    
+    <article>
+      <img src="../img/Camponotus_cruentatus.jpg">
+      <button class="changeImage">Cambiar</button>
+      <button class="eraseArticle">Borrar</button>
+    </article>
+
+    <article>
+      <img src="../img/Cardiocondyla_batesii.jpg">
+      <button class="changeImage">Cambiar</button>
+      <button class="eraseArticle">Borrar</button>
+    </article>
+
+    <article>
+      <img src="../img/Cataglyphis_rosenhaueri.jpg">
+      <button class="changeImage">Cambiar</button>
+      <button class="eraseArticle">Borrar</button>
+    </article>
+  </main>
+  
+  <script>
+    /** 
+     * He utilizado delegación de eventos para los botones "Cambiar"
+     * y "Borrar" dentro de los article para que los botones funcionen
+     * también en los nuevos elementos añadidos dinámicamente.
+     **/
+
+    // Se ejecuta después de que el DOM haya sido cargado
+    $(document).ready(function() {
+      // Función que una imagen aleatoria
+      function getRandomImage() {
+        const images = [
+          "../img/Anochetus_ghilianii.jpg",
+          "../img/Aphaenogaster_iberica.jpg",
+          "../img/Camponotus_cruentatus.jpg",
+          "../img/Cardiocondyla_batesii.jpg",
+          "../img/Cataglyphis_rosenhaueri.jpg",
+          "../img/Crematogaster_auberti.jpg",
+          "../img/Formica_sanguinea.jpg",
+          "../img/Goniomma_hispanicum.jpg",
+          "../img/Lasius_grandis.jpg",
+          "../img/Messor_barbarus.jpg",
+          "../img/Plagiolepis_schmitzii.jpg",
+          "../img/Tapinoma_ibericum.jpg",
+          "../img/Temnothorax_recedens.jpg",
+          "../img/Tetramorium_forte.jpg"
+        ]
+
+        return images[Math.floor(Math.random() * images.length)]
+      }
+
+      // Cambia color de fondo
+      $(".changeColor").click(function() {
+        let selectedColor = $("#colorPicker").val()
+        $("main").css("background-color", selectedColor)
+      })
+
+      // Añade un nuevo article al final del main
+      $(".addElement").click(function() {
+        let newArticle = $("<article>")
+        let randomImage = getRandomImage()
+        newArticle.html(`
+          <img src="${randomImage}">
+          <button class="changeImage">Cambiar</button>
+          <button class="eraseArticle">Borrar</button>
+        `)
+        $("main").append(newArticle)
+      })
+
+      // Cambia imagen al azar (delegación de eventos)
+      $("main").on("click", ".changeImage", function() {
+        let randomImage = getRandomImage()
+        $(this).siblings("img").attr("src", randomImage)
+      })
+
+      // Borra un article (delegación de eventos)
+      $("main").on("click", ".eraseArticle", function() {
+        $(this).parent("article").remove()
+      })
+    })
+  </script>
+</body>
+</html>
+

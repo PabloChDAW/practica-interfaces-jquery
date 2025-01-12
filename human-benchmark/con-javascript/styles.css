@@ -1,0 +1,10 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Hace que el body ocupe toda la altura de la ventana */
+  margin: 0; /* Elimina el margen por defecto del body */
+  color: white;
+  background-color: #2b87d1;
+}

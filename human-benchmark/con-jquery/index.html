@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Human Benchmark</title>
+  <link rel="stylesheet" href="styles.css">
+  <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+</head>
+<body>
+  <h1>Reaction Time Test</h1>
+  <h4>When the red box turns green, click as quickly as you can.</h4>
+  <h4>Click anywhere to start.</h4>
+  
+  <script>
+    // Asegura que se ejecute sólo después de que el DOM haya sido cargado
+    $(document).ready(function() {
+      let startTime, endTime, timeoutId
+
+      $('body').click(function() {
+        if ($('body').css('background-color') === 'rgb(43, 135, 209)') { // Estado inicial
+          $('body').css('background-color', 'red')
+          $('h4').last().text('When the red box turns green, click as quickly as you can.')
+          startTime = new Date().getTime()
+          timeoutId = setTimeout(function() {
+            $('body').css('background-color', 'green')
+            $('h4').last().text('Click now!')
+            startTime = new Date().getTime()
+          }, Math.random() * 3000 + 3000) // Tiempo aleatorio entre 3 y 6 segundos
+        } else if ($('body').css('background-color') === 'rgb(255, 0, 0)') { // Rojo
+          clearTimeout(timeoutId)
+          $('body').css('background-color', 'blue')
+          $('h4').last().text('Too soon!')
+        } else if ($('body').css('background-color') === 'rgb(0, 128, 0)') { // Verde
+          endTime = new Date().getTime()
+          $('body').css('background-color', 'blue')
+          $('h4').last().text('Time: ' + (endTime - startTime) + ' ms')
+        }
+      })
+    })
+  </script>
+</body>
+</html>
+
